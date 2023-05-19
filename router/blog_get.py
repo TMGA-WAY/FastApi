@@ -1,6 +1,6 @@
 from fastapi import APIRouter, status, Response, Depends
 from typing import Optional
-from rounter.blog_post import required_functionalities
+from router.blog_post import required_functionalities
 from enum import Enum
 
 router = APIRouter(
@@ -17,9 +17,9 @@ def get_all_blogs(page: int, page_size: Optional[int] = None,
 
 
 @router.get('/{id}/comments/{comment_id}', tags=['comments'])
-def get_comment(id: int, comment_id: int, valid: bool = True,
+def get_comment(id1: int, comment_id: int, valid: bool = True,
                 username: Optional[str] = None):
-    return {'message': f'blog_id {id}, comments_id {comment_id},valid {valid},username {username}'}
+    return {'message': f'blog_id {id1}, comments_id {comment_id},valid {valid},username {username}'}
 
 
 class BlogType(str, Enum):
@@ -29,8 +29,8 @@ class BlogType(str, Enum):
 
 
 @router.get('/type/{type}')
-def get_blog_type(type: BlogType):
-    return {'message': f'Blog type {type}'}
+def get_blog_type(type_: BlogType):
+    return {'message': f'Blog type {type_}'}
 
 
 @router.get("/{id1}", status_code=status.HTTP_200_OK)

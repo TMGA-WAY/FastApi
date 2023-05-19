@@ -14,24 +14,24 @@ class BlogModel(BaseModel):
     published: Optional[bool]
 
 
-@router.post("/new/{id}")
-def create_blog(blog: BlogModel, id: int, version: int = 1):
+@router.post("/new/{id1}")
+def create_blog(blog: BlogModel, id1: int, version: int = 1):
     return {
-        'id': id,
+        'id': id1,
         'data': blog,
         'version': version
     }
 
 
-@router.post("new/{id}/comment")
-def create_comment(blog: BlogModel, id: int,
+@router.post("new/{id1}/comment")
+def create_comment(blog: BlogModel, id1: int,
                    comment_id: int = Query(None,
                                            title="ID of the comment",
                                            description="Some description"),
                    content: str = Body(Ellipsis, min_length=10),
                    v: Optional[List[str]] = Query(None)):
     return {
-        'id': id,
+        'id': id1,
         'blog': blog,
         'comment_id': comment_id,
         'content': content,
