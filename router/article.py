@@ -19,3 +19,4 @@ def create_article(request: article_base,
 @router.get("/{id_}", response_model=article_display)
 def get_article(id_: int, db: Session = Depends(get_db)) -> article_display:
     return db_article.get_article(db=db, id_=id_)
+
