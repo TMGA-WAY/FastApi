@@ -2,13 +2,13 @@ from pydantic import BaseModel
 from typing import List
 
 
-class user_base(BaseModel):
+class UserBase(BaseModel):
     user_name: str
     email: str
     password: str
 
 
-class article(BaseModel):
+class Article(BaseModel):
     title: str
     content: str
     published: bool
@@ -17,23 +17,23 @@ class article(BaseModel):
         orm_mode = True
 
 
-class user_display(BaseModel):
+class UserDisplay(BaseModel):
     user_name: str
     email: str
-    items: List[article] = []
+    items: List[Article] = []
 
     class Config:
         orm_mode = True
 
 
-class article_base(BaseModel):
+class ArticleBase(BaseModel):
     title: str
     content: str
     published: bool
     creator_id: int
 
 
-class user(BaseModel):
+class User(BaseModel):
     id: int
     user_name: str
 
@@ -41,11 +41,11 @@ class user(BaseModel):
         orm_mode = True
 
 
-class article_display(BaseModel):
+class ArticleDisplay(BaseModel):
     title: str
     content: str
     published: bool
-    user: user
+    user: User
 
     class Config:
         orm_mode = True

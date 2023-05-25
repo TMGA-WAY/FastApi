@@ -5,7 +5,7 @@ from sqlalchemy.sql.schema import ForeignKey
 from sqlalchemy.orm import relationship
 
 
-class db_user(base):
+class DbUser(base):
     __tablename__ = 'users'
     id = Column(Integer, primary_key=True, index=True)
     user_name = Column(String)
@@ -14,7 +14,7 @@ class db_user(base):
     items = relationship("db_article", back_populates="user")
 
 
-class db_article(base):
+class DbArticle(base):
     __tablename__ = "articles"
     id = Column(Integer, primary_key=True, index=True)
     title = Column(String)
