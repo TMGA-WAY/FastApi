@@ -28,8 +28,8 @@ def get_all_product() -> Response:
 def get_products(response: Response,
                  custom_header: Optional[str] = Header(None),
                  test_cookie: Optional[str] = Cookie(None)) -> Dict:
-    response.headers['custome_response_header'] = " and ".join(custom_header)
-    return {"data": products, "custome_header": custom_header, "cookie": test_cookie}
+    response.headers['custom_response_header'] = " and ".join(custom_header)
+    return {"data": products, "custom_header": custom_header, "cookie": test_cookie}
 
 
 @router.get('/{id_}')

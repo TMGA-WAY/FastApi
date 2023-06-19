@@ -3,8 +3,9 @@ from fastapi import FastAPI, Request, HTTPException
 from fastapi.responses import JSONResponse, PlainTextResponse
 from db import models
 from db.databse import engine
-from router import user,article,product, blog_get, blog_post
+from router import user, article, product, blog_get, blog_post
 from exception import StoryException
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 app.include_router(blog_get.router)
@@ -30,7 +31,16 @@ def story_exception_handler(request: Request, exc: StoryException):
                         content={'detail': exc.name})
 
 
+origin = "http://localhost:3000"
+
 models.base.metadata.create_all(engine)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origin=origin,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"]
+)
 
 if __name__ == "__main__":
     uvicorn.run('main:app')
