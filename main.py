@@ -36,7 +36,7 @@ origin = "http://localhost:3000"
 models.base.metadata.create_all(engine)
 app.add_middleware(
     CORSMiddleware,
-    allow_origin=origin,
+    allow_origins=origin,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"]

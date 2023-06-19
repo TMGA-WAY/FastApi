@@ -3,6 +3,7 @@ from sqlalchemy.orm import Session
 from schema import ArticleBase, ArticleDisplay
 from db.databse import get_db
 from db import db_article
+from auth.oauth2 import oauth2_schema
 
 router = APIRouter(
     prefix="/article",
@@ -17,6 +18,6 @@ def create_article(request: ArticleBase,
 
 
 @router.get("/{id_}", response_model=ArticleBase)
-def get_article(id_: int, db: Session = Depends(get_db)) -> ArticleBase:
+def get_article(id_: int, db: Session = Depends(get_db),
+                token: str = Depends(oauth2_schema)) -> ArticleBase:
     return db_article.get_article(db=db, id_=id_)
-
