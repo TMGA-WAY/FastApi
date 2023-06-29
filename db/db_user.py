@@ -5,8 +5,8 @@ from db.hash import HashUser
 from fastapi import HTTPException, status
 
 
-def create_user(db: Session, request: UserBase):
-    new_user = UserBase(
+def create_user(db: Session, request: DbUser):
+    new_user = DbUser(
         user_name=request.user_name,
         email=request.email,
         password=HashUser.bcrypt(request.password)
@@ -18,6 +18,7 @@ def create_user(db: Session, request: UserBase):
 
 
 def get_all(db: Session):
+    print("inside get_all")
     return db.query(DbUser).all()
 
 

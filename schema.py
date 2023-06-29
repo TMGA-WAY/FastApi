@@ -33,19 +33,19 @@ class ArticleBase(BaseModel):
     creator_id: int
 
 
-class User(BaseModel):
-    id: int
-    user_name: str
-
-    class Config:
-        orm_mode = True
+# class User(BaseModel):
+#     id: int
+#     user_name: str
+#
+#     class Config:
+#         orm_mode = True
 
 
 class ArticleDisplay(BaseModel):
     title: str
     content: str
     published: bool
-    user: User
+    user: UserDisplay
 
     class Config:
         orm_mode = True

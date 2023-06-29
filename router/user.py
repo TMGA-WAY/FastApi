@@ -5,6 +5,9 @@ from sqlalchemy.orm import Session
 from db.databse import get_db
 from db import db_user
 from schema import UserDisplay
+import logging
+
+logger = logging.getLogger("user_logger")
 
 router = APIRouter(
     prefix='/user',
@@ -15,11 +18,13 @@ router = APIRouter(
 # create user
 @router.post('/', response_model=UserDisplay)
 def create_user(request: UserBase, db: Session = Depends(get_db)) -> UserBase:
+    logger.info("create user")
     return db_user.create_user(db=db, request=request)
 
 
 @router.get('/', response_model=List[UserDisplay])
 def get_all_user(db: Session = Depends(get_db)) -> List[UserDisplay]:
+    logger.info("inside get all user")
     return db_user.get_all(db)
 
 
